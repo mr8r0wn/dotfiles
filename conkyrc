@@ -1,0 +1,126 @@
+# conky configuration for i3-bar
+# edited by bruunn@gmail.com
+
+out_to_x no
+own_window no
+out_to_console yes
+
+background no
+max_text_width 0
+update_interval 2.0
+total_run_times 0
+short_units yes
+cpu_avg_samples 4
+double_buffer yes
+
+
+TEXT
+
+# JSON for i3bar
+
+
+ [	
+ 	{ "full_text" : " " , "color" : "\#828281", 
+		"separator": false, 
+		"separator_block_width": 3
+	},
+    
+# CPU usage    
+	{ "full_text" : "${cpu}% " , 
+		"color" : ${if_match ${cpu}>80}"\#bf3f34"${else}"\#36A3D1"${endif}, 
+		"separator": false, 
+		"separator_block_width": 7
+	},
+
+# Load symbol
+    { "full_text" : " " , "color" : "\#828281", 
+		"separator": false, 
+		"separator_block_width": 3
+	},
+
+# avg load
+    { "full_text" : "${loadavg} " , "color" : ${if_match ${loadavg 1}>0.01}"\#bf3f34"${else}"\#36A3D1"${endif} , 
+		"separator": false, 
+		"separator_block_width": 7
+	},
+        
+# Pie-Chart!!!!
+    { "full_text" : " " , "color" : "\#828281", 
+		"separator": false, 
+		"separator_block_width": 3
+	},
+        
+# Memory percentage
+	{ "full_text" : "${memperc}% " , "color" : ${if_match ${memperc}>75}"\#bf3f34"${else}"\#36A3D1"${endif} , 
+		"separator": false, 
+		"separator_block_width": 7
+	},
+	
+# Network symbold
+    { "full_text" : " " , "color" : ${if_match ${execi 10 ~/.i3/internet_check.sh}!=1}"\#C24E4E"${else}"\#31BD89"${endif} ,
+		"separator": false, 
+		"separator_block_width": 0
+	},
+
+# Ip address        
+    { "full_text" : "${if_existing /sys/class/net/eth0/operstate up} ${addr eth0} ${else} ${addr wlan0} (${wireless_link_qual_perc wlan0}% - ${wireless_essid wlan0}) ${endif}" , "color" :"\#36A3D1" , 
+		"separator": false, 
+		"separator_block_width": 7
+	},
+	
+# Battery lightning symbol 
+    { "full_text" : "" , "color" :
+    	${if_match ${execi 10 ~/.i3/battery_charge.pl}==1}"\#C24E4E"
+			${else}
+		${if_match ${execi 10 ~/.i3/battery_charge.pl}==2}"\#ffe746"	
+			${else}
+		"\#31BD89"
+		${endif} 
+		${endif} , 
+		"separator": false, 
+		"separator_block_width": 3
+	},
+
+# Battery percentage    
+	{ "full_text" : "${execi 30 ~/.i3/battery.sh}% " , 
+	 	"color" : ${if_match ${execi 30 ~/.i3/battery.sh}<20}"\#bf3f34"${else}"\#36A3D1"${endif} , 
+		"separator": false, 
+		"separator_block_width": 7
+	},
+
+# Volume symbol
+#    { "full_text" : "${if_match "${exec pactl list sinks | grep "Mute: yes" | tr -d "\t"}"=="Mute: yes" }  ${else}  ${exec check_volume.pl 0} ${endif} " , 
+#		"color" : ${if_match "${exec pactl list sinks | grep "Mute: yes" | tr -d "\t"}"=="Mute: yes" } "\#bf3f34" ${else} "\#31BD89" ${endif} ,
+#		"separator": true,
+#		"separator_block_width": 7
+#	},
+
+# Volume stuff
+#	{ "full_text" : "${exec ~/.i3/get_volume}" , 
+#		"color" : "\#bf3f34" ,
+#		"separator": true , 
+#		"separator_block_width": 7
+#	},
+
+# Volume icon
+	{ "full_text" : ${if_match ${exec ~/.i3/toggle-mute get} == 0}"  "${else}${if_match ${exec ~/.i3/get_volume} < 51}"  "${else}"  "${endif}${endif}, 
+		"color" : ${if_match ${exec ~/.i3/toggle-mute get} == 0}"\#bf3f34"${else}${if_match ${exec ~/.i3/get_volume} < 24}"\#bf3f34"${endif}\
+		 ${if_match ${exec ~/.i3/get_volume} > 24}${if_match ${exec ~/.i3/get_volume} < 66}"\#ff9422"${endif}${endif}\
+		 ${if_match ${exec ~/.i3/get_volume} > 66}"\#31BD89"${endif}${endif} ,
+		"separator" : false , 
+		"separator_block_width" : 3
+	},
+
+# Volume %
+	{ "full_text" : "${exec ~/.i3/get_volume}% " , 
+		"color" : ${if_match ${exec ~/.i3/toggle-mute get} == 1}"\#36A3D1"${else}"\#bf3f34"${endif} ,
+		"separator" : true , 
+		"separator_block_width" : 7 
+	},
+
+# Seperator before date/time
+    { "full_text" : " " , "color" : "\#828281", "separator": false, "separator_block_width": 0 },
+
+# Date/time 
+    { "full_text" : "${time %a %Y-%m-%d} ${time %H:%M}" , "color" :"\#36A3D1" }
+],
