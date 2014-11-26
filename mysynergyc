@@ -1,0 +1,10 @@
+#!/bin/sh
+# script used to auto set the proper keyboard layout of the synergy client
+# options found in "cat /etc/default/keyboard"
+#
+# instead of manually setting it with "setxkbmap dk"
+#
+
+. /etc/default/keyboard
+synergyc $1
+setxkbmap $XKBLAYOUT -option "$XKBOPTIONS" -model "$XKBMODEL" -variant "$XKBVARIANT"
