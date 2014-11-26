@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# mute status (1 = not muted/sound on : 0 = muted / sound off)
+toggle=$((pactl list sinks | grep -q Mute:.no && echo 1) || echo 0);
+
+
+case "$1" in
+	get)
+		echo $toggle
+		;;
+	*)
+		pactl set-sink-mute 0 $toggle
+		;;
+esac
+

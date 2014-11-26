@@ -1,0 +1,27 @@
+#!/bin/bash
+spoton=$((ps aux | grep -q '[s]potify' && echo 1) || echo 0)
+#echo $spoton
+
+
+if [[ $spoton -eq 1 ]]; then
+	echo "Spotify is open..."
+	case "$1" in
+		play)
+		#echo "Play"
+		python ~/.bin/spotify_control.py -p
+		;;
+		pause)
+		#echo "Pause"
+		python ~/.bin/spotify_control.py -p
+		;;
+		next)
+		#echo "Next track"
+		python ~/.bin/spotify_control.py -n
+		;;
+		prev)
+		#echo "Prev track"
+		python ~/.bin/spotify_control.py -l
+	esac
+else
+	echo "Spotify is close..."
+fi

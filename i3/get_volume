@@ -1,0 +1,42 @@
+#!/bin/bash
+## Script used to get the system sound volume (PulseAudio)
+
+# the line containing the volume (%)
+line=$(pactl list sinks | egrep -i '[v]olume: 0:' | grep -o -P '[0-9]*(\.[0-9]*)?(?=%)'); #| grep -o '[^ ]*%' | cut -f1 -d ' '); 
+####| grep -o -P '[0-9]*(\.[0-9]*)?(?=%)' | tr ' ' "\n"); #
+
+# extract the volume string 
+
+echo $(echo ${line:$((${#line} / 2))});
+#vol=$(echo ${line:$((${#line} / 2))});
+#echo $vol;
+#echo ${#vol};
+
+#vol=$(echo ${line:0:$((${#line} / 2))});
+
+# output the volume
+#echo $vol;
+
+
+
+
+
+
+
+#z=$(($ll / 2));
+#echo "$z";
+
+#first=$(echo ${line[0]});
+#second=$(echo "${first[0]}");
+
+#echo ${line};
+#echo $second;
+#echo $first;
+
+# extract the volume number
+#vol=$(echo "${line//%}");
+
+####vol=$(pactl list sinks | perl -000ne 'if(/#0/){/(Volume:.*)/; print "$1\n"}');
+
+# output the volue
+#echo $vol;
