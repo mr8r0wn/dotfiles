@@ -1,0 +1,50 @@
+#!/bin/bash
+pcname=$(hostname);
+echo "hostname: $pcname";
+pcname=$(printf "%s" "$pcname" | md5sum);
+echo "hostname(md5): $pcname";
+#pcnum=$(echo "$pcname" | cut -c1-8);
+pcnum=$(echo ${pcname:0:8});
+echo "pcnum: $pcnum";
+fname=$(echo "files.$pcnum");
+echo "filename: $fname";
+
+#files=$( `cat "$fname" `);
+echo "";
+echo "Reading lines from \"$fname\"";
+#A=0;
+#for ((i = 0; i < ${#files[@]}; i++ )); do
+#for i in "${!files[@]}"; do
+#output=$(printf "#%s:\t%s\n" "$A" "${files[$A]}");
+#A=$((A+1));
+#echo "$output";
+
+#done
+#echo "...done!!";
+
+#echo "${!files[@]}";
+
+#exit
+
+array=();
+
+# Read the file in parameter and fill the array named "array"
+getArray() {
+    i=0
+    while read line # Read a line
+    do
+        array[i]=$line # Put it into the array
+	echo "$i: $line";
+        i=$(($i + 1));
+    done < $1
+}
+
+#getArray "files.$pcnum"
+getArray "$fname";
+
+#for e in "${array[@]}"
+#do
+#    echo "$e"
+#done
+
+echo "... done!!!";
