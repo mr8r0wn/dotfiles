@@ -1,2 +1,4 @@
 i3
 conkyrc
+mount_bertha.sh
+umount_bertha.sh
