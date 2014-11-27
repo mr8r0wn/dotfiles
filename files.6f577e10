@@ -2,3 +2,5 @@ vimrc
 makesymlinks.sh
 testing
 mysynergyc
+mount_bertha.sh
+umount_bertha.sh
