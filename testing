@@ -38,23 +38,31 @@ getArray() {
     while read line # Read a line
     do
         array[i]=$line # Put it into the array
-	echo "$i: $line";
+	#echo "$i: $line";
         i=$(($i + 1));
     done < $1
 }
 
-#printf -v astr "%s " "${array[@]}";
-#astr=${astr%?};
-#for st in "${array[@]}"; do
-#	astr+=$st;
-#done
+## directory variables
+dir=~/dotfiles                    # dotfiles directory
+olddir=~/dotfiles_old             # old dotfiles backup directory
 
 ## get file array from file-list
 getArray "$fname";
 ## convert array to string delimitered by " "
 astr=$(echo ${array[@]});
 
+#echo "";
+echo "files: $astr";
+#echo "... done!!!";
 echo "";
-echo "Converted to string: $astr";
-echo "... done!!!";
+for file in $astr; do
+    echo "Moving any existing dotfiles from ~ to $olddir"
+    echo "mv ~/.$file ~/dotfiles_old/"
+    echo "Creating symlink to $file in home directory."
+    echo "ln -s $dir/$file ~/.$file"
+    echo "";
+done
+echo "... done!!";
+
 #echo ${array[*]};
