@@ -43,12 +43,18 @@ getArray() {
     done < $1
 }
 
-#getArray "files.$pcnum"
-getArray "$fname";
-
-#for e in "${array[@]}"
-#do
-#    echo "$e"
+#printf -v astr "%s " "${array[@]}";
+#astr=${astr%?};
+#for st in "${array[@]}"; do
+#	astr+=$st;
 #done
 
+## get file array from file-list
+getArray "$fname";
+## convert array to string delimitered by " "
+astr=$(echo ${array[@]});
+
+echo "";
+echo "Converted to string: $astr";
 echo "... done!!!";
+#echo ${array[*]};
