@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## script to check if spotify is open 
+
+spotopen=$(ps aux | (( grep -s -i '[s]potify' && echo 1) || echo 0 ))
