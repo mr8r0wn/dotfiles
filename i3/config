@@ -212,6 +212,7 @@ for_window [class="^Spotify$"] floating enable
 assign [class="^Steam"] $w10
 for_window [class="^Steam"] floating enable
 for_window [class="^Skype"] floating enable
+for_window [class="^TeamViewer.exe"]
 
 
 ## startup applications 
