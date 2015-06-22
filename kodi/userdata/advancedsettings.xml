@@ -1,0 +1,39 @@
+<advancedsettings>
+    <videodatabase>
+        <type>mysql</type>
+        <host>192.168.1.3</host>
+        <port>3306</port>
+        <user>xbmc</user>
+        <pass>xbmc</pass>
+    </videodatabase> 
+
+    <musicdatabase>
+        <type>mysql</type>
+        <host>192.168.1.3</host>
+        <port>3306</port>
+        <user>xbmc</user>
+        <pass>xbmc</pass>
+    </musicdatabase>
+    <video>
+        <excludefromscan>
+            <regexp>@eaDir</regexp>
+            <regexp>@EADIR</regexp>
+	    <regexp>TVextras</regexp>
+	    <regexp>Extras</regexp>
+        </excludefromscan>
+        <excludefromlisting>
+            <regexp>@eaDir</regexp>
+            <regexp>@EADIR</regexp>
+        </excludefromlisting>
+    </video>
+    <audio>
+        <excludefromscan>
+            <regexp>@eaDir</regexp>
+            <regexp>@EADIR</regexp>
+        </excludefromscan>
+        <excludefromlisting>
+            <regexp>@eaDir</regexp>
+            <regexp>@EADIR</regexp>
+        </excludefromlisting>
+    </audio>
+</advancedsettings>
